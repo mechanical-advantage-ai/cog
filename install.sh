@@ -33,16 +33,34 @@ detect_arch() {
 }
 
 get_latest_version() {
-    curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" |
+    if ! response=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest"); then
+        echo "Error: failed to fetch the latest release from GitHub" >&2
+        exit 1
+    fi
+
+    version=$(printf '%s\n' "$response" |
         grep '"tag_name"' |
-        sed -E 's/.*"tag_name": *"([^"]+)".*/\1/'
+        sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
+
+    if [ -z "$version" ]; then
+        echo "Error: failed to determine the latest release version" >&2
+        exit 1
+    fi
+
+    echo "$version"
 }
 
 add_to_path() {
     path_entry='export PATH="$HOME/.cog/bin:$PATH"'
 
     # Detect shell and rc file
-    case "$(basename "$SHELL")" in
+    if [ -n "$SHELL" ]; then
+        shell_name=$(basename "$SHELL")
+    else
+        shell_name=""
+    fi
+
+    case "$shell_name" in
         zsh)  rc_file="$HOME/.zshrc" ;;
         bash)
             if [ -f "$HOME/.bashrc" ]; then

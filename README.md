@@ -14,7 +14,7 @@ This installs the `cog` binary to `~/.cog/bin` and adds it to your PATH. Restart
 
 - macOS (Apple Silicon & Intel)
 - Linux (amd64 & arm64)
-- Windows (amd64 & arm64)
+- Windows (amd64 & arm64, via WSL/Git Bash/MSYS2)
 
 ## Usage
 
