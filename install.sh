@@ -38,11 +38,12 @@ get_latest_version() {
     # that the /repos/{owner}/{repo}/releases/latest endpoint is subject to.
     redirect_url=$(curl -fsSI "https://github.com/${REPO}/releases/latest" 2>/dev/null |
         grep -i '^location:' |
+        tail -n 1 |
         sed 's/location: *//i' |
         tr -d '\r')
 
     if [ -n "$redirect_url" ]; then
-        version=$(printf '%s\n' "$redirect_url" | grep '/tag/' | sed 's|.*/tag/||')
+        version=$(printf '%s\n' "$redirect_url" | grep '/tag/' | head -n 1 | sed 's|.*/tag/||')
         if [ -n "$version" ]; then
             echo "$version"
             return
