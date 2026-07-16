@@ -1,5 +1,14 @@
 # Cog
 
+> [!IMPORTANT]
+> **Cog has been decommissioned (July 2026).** It is no longer available for
+> purchase, new installations are not supported, and no further releases will
+> be published. Existing subscriptions were canceled or run to the end of
+> their paid period. This repository is archived and kept for reference.
+>
+> Mechanical Advantage's focus is now [Fulcrum](https://mechanicaladvantage.ai)
+> — hire an AI workforce to run your business.
+
 **Autonomous software development by [Mechanical Advantage](https://mechanicaladvantage.ai).**
 
 Cog turns GitHub issues into merged pull requests. You describe what you want; Cog implements the code, opens the PR, addresses review feedback, and merges when approved. It orchestrates whichever coding harness you already use — Claude Code, Codex CLI, Gemini CLI, OpenCode, or pi — across the full lifecycle from idea to merge.
